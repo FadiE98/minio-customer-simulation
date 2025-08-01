@@ -42,4 +42,31 @@ This project simulates a MinIO deployment for a government-sponsored threat inte
 
 ---
 
-## 📂 Project Structure
+## 📂 Onboarding Simulation
+
+#!/bin/bash
+
+echo "🚀 Starting MinIO onboarding..."
+
+# Connect to local MinIO instance
+mc alias set local http://localhost:9000 minioadmin minioadmin
+
+# Create buckets
+mc mb local/intel-uploads
+mc mb local/ai-training
+mc mb local/reports
+
+# Create users
+mc admin user add local analyst strongpassword1
+mc admin user add local ml-engineer strongpassword2
+
+# Attach policies
+mc admin policy add local read-only-policy ./policies/read-only.json
+mc admin policy add local read-write-policy ./policies/read-write.json
+mc admin policy set local read-only-policy user=analyst
+mc admin policy set local read-write-policy user=ml-engineer
+
+# Upload sample data
+mc cp ../sample-data/threats.csv local/intel-uploads/
+
+echo "✅ Onboarding complete. Users created and data uploaded."
