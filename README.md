@@ -30,8 +30,6 @@ This project simulates a MinIO deployment for a government-sponsored threat inte
 
 ## ⚙️ Simulated Deployment Overview
 
-> 💡 *Note: This project is structured as a simulation. It includes scripts and configuration files that represent what would be used in a real Kubernetes-based MinIO deployment.*
-
 ### 🔧 Technologies Used
 
 - MinIO (S3-compatible object storage)
